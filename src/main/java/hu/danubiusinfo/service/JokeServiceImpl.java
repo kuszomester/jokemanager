@@ -17,10 +17,10 @@ import java.sql.PreparedStatement;
 @Service
 public class JokeServiceImpl implements JokeService {
 
-    private static String SELECT_SINGLE_JOKE_SQL = "SELECT * FROM jokes WHERE id = ?";
-    private static String SELECT_RANDOM_JOKE_SQL = "SELECT * FROM jokes ORDER BY rand() LIMIT 1";
-    private static String DELETE_JOKE_SQL = "DELETE FROM jokes WHERE id = ?";
-    private static String INSERT_JOKE_SQL = "INSERT INTO jokes (content, createdAt) VALUES (?, CURRENT_TIMESTAMP)";
+    private static final String SELECT_SINGLE_JOKE_SQL = "SELECT * FROM jokes WHERE id = ?";
+    private static final String SELECT_RANDOM_JOKE_SQL = "SELECT * FROM jokes ORDER BY rand() LIMIT 1";
+    private static final String DELETE_JOKE_SQL = "DELETE FROM jokes WHERE id = ?";
+    private static final String INSERT_JOKE_SQL = "INSERT INTO jokes (content, createdAt) VALUES (?, CURRENT_TIMESTAMP)";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

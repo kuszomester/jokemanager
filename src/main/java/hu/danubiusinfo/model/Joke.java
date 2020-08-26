@@ -7,8 +7,8 @@ import org.threeten.bp.OffsetDateTime;
 @AllArgsConstructor
 @Getter
 public class Joke {
-    private Long id;
-    private String content;
-    private OffsetDateTime createdAt;
+    private final Long id;
+    private final String content;
+    private final OffsetDateTime createdAt;
 
 }
