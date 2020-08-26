@@ -2,9 +2,20 @@
 
 For managing jokes?
 
-## Overview  
+## Building & Running  
 
-TODO
+---
+To build the project:
+
+mvn clean install
+
+---
+To run the project:
+
+java -jar target\jokemanager-1.0.0.jar
+
+---
+Note: requires JDK ver. 14 or later
 
 ##TODO
 
@@ -12,9 +23,7 @@ TODO
 - Add more/proper jokes to database
 - implement chucknorris
 - Joke<>JokeResponse mapper util?
-- Spring security setup for https
 - Spring error handling vs. JokeApi ErrorResponse
 - configure something so datasource problems go away for intelliJ
 - logging improvements (to file, req/resp etc.)
-- building, running instructions
  
