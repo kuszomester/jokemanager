@@ -5,10 +5,7 @@
  */
 package hu.danubiusinfo.api;
 
-import hu.danubiusinfo.model.JokeAddRequest;
-import hu.danubiusinfo.model.ChuckNorrisJokeResponse;
-import hu.danubiusinfo.model.ErrorMessage;
-import hu.danubiusinfo.model.JokeResponse;
+import hu.danubiusinfo.model.*;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,15 +19,16 @@ import javax.validation.Valid;
 @Api(value = "jokes", description = "the jokes API")
 public interface JokesApi {
 
-    @ApiOperation(value = "", nickname = "addJoke", notes = "Upload a new joke", tags={ "joke", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 400, message = "Empty or missing joke content", response = ErrorMessage.class),
-        @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class) })
+    @ApiOperation(value = "", nickname = "addJoke", notes = "Upload a new joke", response = hu.danubiusinfo.model.InlineResponse200.class, tags={ "joke", })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "successful operation", response = InlineResponse200.class),
+            @ApiResponse(code = 400, message = "Empty or missing joke content", response = ErrorMessage.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorMessage.class) })
     @RequestMapping(value = "/jokes",
-        produces = { "application/json" }, 
-        consumes = { "application/json" },
-        method = RequestMethod.POST)
-    ResponseEntity<Void> addJoke(@ApiParam(value = "Joke object" ,required=true )  @Valid @RequestBody JokeAddRequest body
+            produces = { "application/json" },
+            consumes = { "application/json" },
+            method = RequestMethod.POST)
+    ResponseEntity<? extends Object> addJoke(@ApiParam(value = "Joke object" ,required=true )  @Valid @RequestBody JokeAddRequest body
 );
 
 
@@ -43,7 +41,7 @@ public interface JokesApi {
     @RequestMapping(value = "/jokes/{id}",
         produces = { "application/json" }, 
         method = RequestMethod.DELETE)
-    ResponseEntity<Void> deleteJoke(@ApiParam(value = "Joke id to delete",required=true) @PathVariable("id") Long id
+    ResponseEntity<? extends Object> deleteJoke(@ApiParam(value = "Joke id to delete",required=true) @PathVariable("id") Long id
 );
 
 
@@ -56,7 +54,7 @@ public interface JokesApi {
     @RequestMapping(value = "/jokes/chuck-norris",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<ChuckNorrisJokeResponse> getChuckNorrisJoke();
+    ResponseEntity<? extends Object> getChuckNorrisJoke();
 
 
     @ApiOperation(value = "", nickname = "getJokeById", notes = "Get a joke by its id", response = JokeResponse.class, tags={ "joke", })

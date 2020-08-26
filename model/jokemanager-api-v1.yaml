@@ -4,7 +4,7 @@ info:
   description: 'For managing jokes.'  
   version: 1.0.0
 servers:
-- url: http://localhost:7083/jokemanager/v1
+- url: http://localhost:7080/jokemanager/v1
 tags:
 - name: joke
   description: Everything about jokes
@@ -23,6 +23,17 @@ paths:
               $ref: '#/components/schemas/JokeAddRequest'
         required: true
       responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 9
         400:
           description: Empty or missing joke content
           content: 

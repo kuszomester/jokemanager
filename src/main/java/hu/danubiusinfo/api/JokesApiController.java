@@ -37,16 +37,25 @@ public class JokesApiController implements JokesApi {
         this.request = request;
     }
 
-    public ResponseEntity<Void> addJoke(@ApiParam(value = "Joke object", required = true) @Valid @RequestBody JokeAddRequest body
+    public ResponseEntity<? extends Object> addJoke(@ApiParam(value = "Joke object", required = true) @Valid @RequestBody JokeAddRequest body
     ) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+        Long newJokeId = jsi.addJoke(body);
+        InlineResponse200 response = new InlineResponse200();
+        response.setId(newJokeId);
+        return new ResponseEntity<InlineResponse200>(response, HttpStatus.OK);
     }
 
-    public ResponseEntity<Void> deleteJoke(@ApiParam(value = "Joke id to delete", required = true) @PathVariable("id") Long id
+    public ResponseEntity<? extends Object> deleteJoke(@ApiParam(value = "Joke id to delete", required = true) @PathVariable("id") Long id
     ) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+        try {
+            jsi.deleteJoke(id);
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        } catch (EmptyResultDataAccessException ex) {
+            ErrorMessage response = new ErrorMessage();
+            response.setCode("JAPI-404");
+            response.setMessage("Joke not found for provided id.");
+            return new ResponseEntity<ErrorMessage>(response, HttpStatus.NOT_FOUND);
+        }
     }
 
     public ResponseEntity<ChuckNorrisJokeResponse> getChuckNorrisJoke() {

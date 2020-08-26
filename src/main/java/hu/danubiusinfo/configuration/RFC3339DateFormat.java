@@ -1,4 +1,4 @@
-package hu.danubiusinfo;
+package hu.danubiusinfo.configuration;
 
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.fasterxml.jackson.databind.util.ISO8601Utils;
