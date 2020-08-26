@@ -19,9 +19,8 @@ Note: requires JDK ver. 14 or later
 
 ##TODO
 
-- Unit tests
-- Add more/proper jokes to database
+- more tests
 - implement chucknorris
-- Joke<>JokeResponse mapper util?
+- Joke <> JokeResponse mapper util?
 - Spring error handling vs. JokeApi ErrorResponse
  
