@@ -24,6 +24,4 @@ Note: requires JDK ver. 14 or later
 - implement chucknorris
 - Joke<>JokeResponse mapper util?
 - Spring error handling vs. JokeApi ErrorResponse
-- configure something so datasource problems go away for intelliJ
-- logging improvements (to file, req/resp etc.)
  
