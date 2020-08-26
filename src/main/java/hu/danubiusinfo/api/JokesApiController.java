@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.IOException;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-08-21T16:03:39.600Z[GMT]")
 @Controller
@@ -59,17 +58,11 @@ public class JokesApiController implements JokesApi {
     }
 
     public ResponseEntity<ChuckNorrisJokeResponse> getChuckNorrisJoke() {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<ChuckNorrisJokeResponse>(objectMapper.readValue("{\n  \"createdAt\" : \"2018-03-20T09:12:28Z\",\n  \"url\" : \"https://api.chucknorris.io/jokes/-NBlNyx1TUyW_8lGoOkvOw\",\n  \"content\" : \"Chuck Norris invented cranberries by uprooting a cherry tree and throwing it into a farm pond.\n\"\n}", ChuckNorrisJokeResponse.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<ChuckNorrisJokeResponse>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
-        return new ResponseEntity<ChuckNorrisJokeResponse>(HttpStatus.NOT_IMPLEMENTED);
+        io.chucknorris.client.Joke chuckNorrisJoke = jsi.getChuckNorrisJoke();
+        ChuckNorrisJokeResponse response = new ChuckNorrisJokeResponse();
+        response.setUrl(chuckNorrisJoke.getSourceUrl());
+        response.setContent(chuckNorrisJoke.getValue());
+        return new ResponseEntity<ChuckNorrisJokeResponse>(response, HttpStatus.OK);
     }
 
     public ResponseEntity<? extends Object> getJokeById(@ApiParam(value = "ID of joke to return", required = true) @PathVariable("id") Long id

@@ -13,6 +13,6 @@ public interface JokeService {
 
     Long addJoke(JokeAddRequest request);
 
-    Joke getChuckNorrisJoke();
+    io.chucknorris.client.Joke getChuckNorrisJoke();
 
 }

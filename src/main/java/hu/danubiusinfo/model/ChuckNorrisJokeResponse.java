@@ -3,9 +3,7 @@ package hu.danubiusinfo.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
-import org.threeten.bp.OffsetDateTime;
 
-import javax.validation.Valid;
 import java.util.Objects;
 
 /**
@@ -18,9 +16,6 @@ import java.util.Objects;
 public class ChuckNorrisJokeResponse {
     @JsonProperty("url")
     private String url = null;
-
-    @JsonProperty("createdAt")
-    private OffsetDateTime createdAt = null;
 
     @JsonProperty("content")
     private String content = null;
@@ -45,10 +40,6 @@ public class ChuckNorrisJokeResponse {
         this.url = url;
     }
 
-    public ChuckNorrisJokeResponse createdAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * Get createdAt
@@ -56,15 +47,6 @@ public class ChuckNorrisJokeResponse {
      * @return createdAt
      **/
     @ApiModelProperty(example = "2018-03-20T09:12:28Z", value = "")
-
-    @Valid
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 
     public ChuckNorrisJokeResponse content(String content) {
         this.content = content;
@@ -97,13 +79,12 @@ public class ChuckNorrisJokeResponse {
         }
         ChuckNorrisJokeResponse chuckNorrisJokeResponse = (ChuckNorrisJokeResponse) o;
         return Objects.equals(this.url, chuckNorrisJokeResponse.url) &&
-                Objects.equals(this.createdAt, chuckNorrisJokeResponse.createdAt) &&
                 Objects.equals(this.content, chuckNorrisJokeResponse.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(url, createdAt, content);
+        return Objects.hash(url, content);
     }
 
     @Override
@@ -112,7 +93,6 @@ public class ChuckNorrisJokeResponse {
         sb.append("class ChuckNorrisJokeResponse {\n");
 
         sb.append("    url: ").append(toIndentedString(url)).append("\n");
-        sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
         sb.append("    content: ").append(toIndentedString(content)).append("\n");
         sb.append("}");
         return sb.toString();

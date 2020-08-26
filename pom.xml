@@ -50,7 +50,7 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
-            <version>1.4.200</version>
+            <version>1.4.196</version>
         </dependency>
         <!--SpringFox dependencies -->
         <dependency>
@@ -101,6 +101,13 @@
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
             <version>2.3.2</version>
+        </dependency>
+
+        <!--For calling the random Chuck Norris joke API -->
+        <dependency>
+            <groupId>io.chucknorris</groupId>
+            <artifactId>client-java</artifactId>
+            <version>1.0.1</version>
         </dependency>
 		
     </dependencies>

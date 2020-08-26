@@ -2,6 +2,7 @@ package hu.danubiusinfo.service;
 
 import hu.danubiusinfo.model.Joke;
 import hu.danubiusinfo.model.JokeAddRequest;
+import io.chucknorris.client.ChuckNorrisClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -45,9 +46,9 @@ public class JokeServiceImpl implements JokeService {
     }
 
     @Override
-    public void deleteJoke(Long id) throws EmptyResultDataAccessException{
+    public void deleteJoke(Long id) throws EmptyResultDataAccessException {
         int rowsAffected = jdbcTemplate.update(DELETE_JOKE_SQL, id);
-        if(rowsAffected == 0){
+        if (rowsAffected == 0) {
             throw new EmptyResultDataAccessException(1);
         }
     }
@@ -65,8 +66,9 @@ public class JokeServiceImpl implements JokeService {
     }
 
     @Override
-    public Joke getChuckNorrisJoke() {
-        return null;
+    public io.chucknorris.client.Joke getChuckNorrisJoke() {
+        ChuckNorrisClient client = new ChuckNorrisClient();
+        return client.getRandomJoke();
     }
 
 }

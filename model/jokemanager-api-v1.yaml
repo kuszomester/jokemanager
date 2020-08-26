@@ -210,10 +210,6 @@ components:
         url:
           type: string
           example: 'https://api.chucknorris.io/jokes/-NBlNyx1TUyW_8lGoOkvOw'
-        createdAt:
-          type: string
-          format: date-time
-          example: '2018-03-20T09:12:28Z'
         content:
           type: string
           example: | 
