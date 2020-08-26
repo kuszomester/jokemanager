@@ -4,7 +4,7 @@ info:
   description: 'For managing jokes.'  
   version: 1.0.0
 servers:
-- url: http://localhost:7080/jokemanager/v1
+- url: https://localhost:7083/jokemanager/v1
 tags:
 - name: joke
   description: Everything about jokes
